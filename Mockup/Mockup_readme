@@ -1,0 +1,19 @@
+
+# Missing elements in the model:
+Need to combine MS, PSM and HH locations in a same layer
+To get a better quality of the combined building locations we need to fix the issue with the misalignment of the IHSI dataset (DATUM?)
+
+# General idea
+## Population is going to be totally controlled by the projected population at Commune level.
+The spatial distribution of the population is controlled by two main data input. Select 2 models based on the coverage of BF and HH loc on each of the communes.
+### A. Combined HH locations from listing filled with building locations. We allocate population information to the “empty” pixels from BF using interpolation (adding Average building size to each detected building). The result of this one is population density.
+#### Steps to follow here.
+##### Calculate average building size per pixel.
+##### Include BF centroids to fill gaps (this ones would have pop = 0) (Raster or Vector?)
+##### Find a way to allocate population info to each of the buildings used to fill gaps. (Interpolation, capture closest value)
+##### Result is our population density raster
+
+### B.Combined BF with HH locations, there is no population data in this one, only building density. And this is the criteria that is going to rule the way population is distributed as a proxy approach.
+
+## For both datasets we calculate Population distribution ratios. By Commune, we sum population or building counts and we divide each pixel by Commune sum value to obtain the distribution ratio that would allocate the estimated projected population across the commune.
+## How disaggregation would work? Same as tpop distribution?
